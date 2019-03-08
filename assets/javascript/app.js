@@ -9,56 +9,56 @@ $(document).ready(function () {
 
         {
             question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            answers: ["anne", "dan", "stan"],
+            correctAnswer: "anne",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "What's your fav color?",
+            answers: ["green", "pink", "blue"],
+            correctAnswer: "pink",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "What's your birth month?",
+            answers: ["june", "july", "august"],
+            correctAnswer: "august",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "what color are your pants",
+            answers: ["blue", "black", "three"],
+            correctAnswer: "black",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "Where r u",
+            answers: ["mcdonalds", "publix", "home"],
+            correctAnswer: "home",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "how are you?",
+            answers: ["good", "two", "three"],
+            correctAnswer: "good",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "do you have nailpolish",
+            answers: ["huh", "yes", "what"],
+            correctAnswer: "yes",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "how old are you?",
+            answers: ["twentythree", "hundred", "hunnit"],
+            correctAnswer: "twentythree",
         },
 
         {
-            question: "Who are you?",
-            answers: ["one", "two", "three"],
-            correctAnswer: "one",
+            question: "what color is your hair?",
+            answers: ["green", "orange", "blondeish"],
+            correctAnswer: "blondeish",
         },
 
         {
@@ -75,13 +75,6 @@ $(document).ready(function () {
     var unanswered = 0;
     var seconds = 120;
     var time;
-    var messages =
-    {
-        correct: "You right!",
-        incorrect: "Not today",
-        outOfTime: "Out of Time",
-        finished: "Lets see what you got"
-    }
 
 
     $("#start").on("click", function () {
@@ -92,6 +85,17 @@ $(document).ready(function () {
         startCountdown();
         displayQuestions();
     })
+    function startover() {      
+        $("#game").hide();
+        scoreboard();
+    $('#startOver').on("click", function(){
+        $(this).hide();
+        displayQuestions();
+        countdown();
+        startCountdown();
+        
+    })
+}
 
 
 
@@ -111,17 +115,18 @@ $(document).ready(function () {
             clearInterval(time);
             $("#game").hide();
             scoreboard()
+            startover()
         }
 
     }
 
-function scoreboard(){
-    $("#correctAnswers").html("<h3>Correct Answers: " + correct + "</h3>");
-    $("#incorrectAnswers").html("<h3>Incorrect Answers: " + incorrect + "</h3>");
-    $("#unansweredQuestions").html("<h3>Unanswered Questions: " + unanswered + "</h3>");
-    $("#startOver").html("<button>start over?</button>");
+    function scoreboard() {
+        $("#correctAnswers").html("<h3>Correct Answers: " + correct + "</h3>");
+        $("#incorrectAnswers").html("<h3>Incorrect Answers: " + incorrect + "</h3>");
+        $("#unansweredQuestions").html("<h3>Unanswered Questions: " + unanswered + "</h3>");
+        $("#startOver").html("<button id='startOver'>start over?</button>");
 
-};
+    };
 
 
     function displayQuestions() {
@@ -138,4 +143,28 @@ function scoreboard(){
         }
     };
 
+
+    $(document).on("click", ".answer", function (event) {
+
+        let userAnswer = $(this).attr("data");
+        console.log("The user answer is: " + userAnswer);
+
+
+
+        if (userAnswer === questions[i].answers) {
+            correct++;
+            console.log(userAnswer);
+        }
+
+    });
+    
+
+
+
+
 });
+
+// if (userChoice == answer) {
+//     correct++
+
+// }
